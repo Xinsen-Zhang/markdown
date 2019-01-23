@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="./static/lib/highlight/styles/ocean.css">
+    <link rel="stylesheet" href="./static/lib/bootstrap/css/bootstrap.min.css">
+    <title>Document</title>
+    <style>
+        body {
+            background-color: #000;
+        }
+    </style>
+</head>
+<body>
+    <textarea name="" cols="30" rows="10" id="test"></textarea>
+    <div id="display"></div>
+    <div class="container bg-info">
+        <div class="p-5"></div>
+        <div class="p-5"></div>
+        <div class="p-5"></div>
+        <div class="p-5"></div>
+        <div class="p-5"></div>
+        <div class="p-5"></div>
+        <div class="p-5"></div>
+        <div class="p-5"></div>
+        <div class="p-5"></div>
+    </div>
+
+<script src="./static/lib/jquery/js/jquery.min.js"></script>
+<script src="./static/lib/highlight/highlight.pack.js"></script>
+<!-- <script>hljs.initHighlightingOnLoad();</script> -->
+<script>hljs.initHighlightingOnLoad();</script>
+<script type="text/javascript">
+$(document).ready(function() {
+  $('pre code').each(function(i, block) {
+    hljs.highlightBlock(block);
+  });
+});
+</script>
+<script>
+    const textarea = document.getElementById('test')
+    let display = document.getElementById('display')
+    textarea.value = localStorage.getItem('temp')
+    let text = textarea.value
+    const codeBlocks = text.match(/```\w*[\s\S]+?```/g)
+    codeBlocks.forEach((element) => {
+        element.match(/```(\w*)?([\s\S]+)?```/g)
+        const language = RegExp.$1
+        let code = RegExp.$2
+        code = code.replace(/</g, '&lt;')
+        code = code.replace(/>/g, '&gt;')
+        const codeBlock = `<pre><code class="${language}">${code}</code></pre>`
+        let div = document.createElement('div')
+        div.innerHTML = codeBlock
+        console.log(div)
+        display.appendChild(div)
+    })
+    // import simpleMDE from 'simplemde'
+</script>
+</body>
+</html>
