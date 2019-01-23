@@ -1,5 +1,5 @@
 # 利用 Vue 搭建简单的 markdown 编写环境及代码高亮和目录生成
-## 全部代码见[鑫森的 github]()
+## 全部代码见[鑫森的 github](https://github.com/Xinsen-Zhang/markdown#%E7%BB%84%E4%BB%B6%E9%80%9A%E4%BF%A1%E4%B8%8E%E7%8A%B6%E6%80%81%E7%AE%A1%E7%90%86)
 ## 效果
 <div align='center'>
     <img src='https://img2018.cnblogs.com/blog/1591103/201901/1591103-20190123120512932-865336460.png' alt='整体页面的效果' width='400'>
@@ -26,6 +26,24 @@
 <div align='center'>
     <img src='https://img2018.cnblogs.com/blog/1591103/201901/1591103-20190123133400575-740211859.png' alt='组件间的关系' width='400'>
 </div>
+
+#### 组件文件的内容
+<pre>
+├── App.vue
+├── assets
+│   └── logo.png
+├── components
+│   ├── markdownBody
+│   │   ├── catalog.vue
+│   │   ├── content.vue
+│   │   ├── markdownBody.vue
+│   │   └── preview.vue
+│   └── markdownHead.vue
+├── main.js
+└── utils
+    └── handler.js
+</pre>
+
 
 ### 组件通信与状态管理
 * 个人感觉使用发布订阅机制可以非常灵活并且不是很熟悉这个机制. 因此强制自己使用这个机制进行 Vue 的组件间通信
@@ -65,7 +83,7 @@
         * `var converter = new showdown.Converter()`
         * `convert.makeHTML('markdown context')`
 
-##### 部分代码
+##### 部分代码([详细内容请见 markdownPreview 组件的代码](https://github.com/Xinsen-Zhang/markdown/blob/master/markdown-conntent/src/components/markdownBody/preview.vue))
 
 ```javascript
 const contentChangeHandler = (vueComponent, content) => {
@@ -123,7 +141,7 @@ plt.show()
 </pre>
 ```
 
-##### 部分代码
+##### 部分代码([详细内容请见 markdownPreview 组件的代码](https://github.com/Xinsen-Zhang/markdown/blob/master/markdown-conntent/src/components/markdownBody/preview.vue))
 ```javascript
 const highlightCode = () => {
     const preEl = document.querySelectorAll('pre')
@@ -150,7 +168,7 @@ const highlightCode = () => {
 * 为了视觉上的效果,不同等级的标签会有不同的缩进
 * 为了标签显示的不是很 pussy, 对 h 的大小稍微进行了调整
 
-##### 部分代码
+##### 部分代码([详细内容请见 markdownCatlog 组件的代码](https://github.com/Xinsen-Zhang/markdown/blob/master/markdown-conntent/src/components/markdownBody/catalog.vue))
 ```javascript
 const updateHead = (elementArray) => {
     elementArray.forEach((element) => {
